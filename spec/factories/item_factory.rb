@@ -1,3 +1,5 @@
-Factory.define :item do |f|
-  f.url "http://google.com"
+FactoryGirl.define do
+  factory :item do
+    url "http://google.com"
+  end
 end

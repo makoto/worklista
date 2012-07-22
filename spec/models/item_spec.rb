@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Item do
   before(:each) do
-    @item = Factory.build(:item)
+    @item = FactoryGirl.build(:item)
   end
   describe "published_at" do
     describe "when document includes date" do

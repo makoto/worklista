@@ -4,7 +4,7 @@ describe ItemsController do
   include Devise::TestHelpers # to give your spec access to helpers
 
   before(:each) do
-    @user = Factory(:user)
+    @user = FactoryGirl.create(:user)
     @params = {
       :user_id => @user.id,
       :item => {:url => 'http://www.google.com'}
@@ -37,7 +37,7 @@ describe ItemsController do
     
     describe "when non author accessed" do
       before(:each) do
-        different_user = Factory(:user)
+        different_user = FactoryGirl.create(:user)
         sign_in :user, different_user
       end
       it "should not create new item" do
@@ -99,7 +99,7 @@ describe ItemsController do
     
     describe "setting item" do
       before(:each) do
-        @item = Factory(:item)
+        @item = FactoryGirl.create(:item)
         sign_in :user, @user
       end
 
