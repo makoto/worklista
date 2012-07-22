@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find_by_username(params[:username])
-    @items = @user.items.order("published_at").reverse.paginate :page => params[:page], :per_page => PAGINATION
+    @items = @user.items.order("published_at desc").paginate :page => params[:page], :per_page => PAGINATION
 
     @select = :recent
     render "me"
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 
   def popular
     @user = User.find_by_username(params[:username])
-    @items = @user.items.order("hatena").reverse.paginate :page => params[:page], :per_page => PAGINATION
+    @items = @user.items.order("hatena desc").paginate :page => params[:page], :per_page => PAGINATION
 
     @select = :popular
     render "me"
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
   def pickup
     @user = User.find_by_username(params[:username])
-    @items = @user.items.order("published_at").reverse.find_all{|i| i.pick}.paginate :page => params[:page], :per_page => PAGINATION
+    @items = @user.items.order("published_at desc").find_all{|i| i.pick}.paginate :page => params[:page], :per_page => PAGINATION
 
     @select = :pickup
     render "me"
